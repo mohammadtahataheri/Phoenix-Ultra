@@ -1,7 +1,7 @@
 import customtkinter as ctk
 
 THEMES = {
-    "آبی نیمه شب": {
+    "night blue": {
         "mode": "Dark",
         "color": {
             "main": "#1E1E1E",
@@ -15,7 +15,7 @@ THEMES = {
         }
     },
 
-    "زمردی": {
+    "emerald": {
         "mode": "Light",
         "color": {
             "main": "#FFFFFF",
@@ -28,7 +28,7 @@ THEMES = {
             "size": 18
         }
     },
-    "سرخ تیره": {
+    "dark red": {
         "mode": "Dark",
         "color": {
             "main": "#121212",
@@ -42,7 +42,7 @@ THEMES = {
         }
     },
 
-    "بنفش اطلسی": {
+    "perpole": {
         "mode": "Dark",
         "color": {
             "main": "#1A1A2E",
@@ -56,7 +56,7 @@ THEMES = {
         }
     },
 
-    "غروب نارنجی": {
+    "orenge": {
         "mode": "Light",
         "color": {
             "main": "#FFF7ED",
@@ -70,7 +70,7 @@ THEMES = {
         }
     },
 
-    "اقیانوسی": {
+    "ocian": {
         "mode": "Dark",
         "color": {
             "main": "#0F172A",
@@ -84,7 +84,7 @@ THEMES = {
         }
     },
 
-    "طلایی": {
+    "gold": {
         "mode": "Light",
         "color": {
             "main": "#F5F5F5",
@@ -98,7 +98,7 @@ THEMES = {
         }
     },
 
-    "کهکشان صورتی": {
+    "Pink Galaxy": {
         "mode": "Dark",
         "color": {
             "main": "#111827",
@@ -112,7 +112,7 @@ THEMES = {
         }
     },
 
-    "نسیم نعنایی": {
+    "suprize": {
         "mode": "Light",
         "color": {
             "main": "#ECFEFF",
@@ -133,7 +133,7 @@ class App(ctk.CTk):
 
         self.geometry("900x600")
 
-        self.current_theme = "آبی نیمه شب"
+        self.current_theme = "night blue"
         self.widgets = []
         self.configure(
             fg_color=THEMES[self.current_theme]["color"]["base"]
@@ -197,6 +197,22 @@ class App(ctk.CTk):
         )
 
         self.widgets.append(self.setting_btn)
+
+        self.apps_btn = ctk.CTkButton(
+            self.sidebar,
+            text="📱",
+            width=40,
+            fg_color=THEMES[self.current_theme]["color"]["button"],
+            text_color=THEMES[self.current_theme]["color"]["text"],
+            command=self.show_apps
+        )
+
+        self.apps_btn.pack(
+            anchor="n",
+            pady=(5, 10)
+        )
+
+        self.widgets.append(self.apps_btn)
         self.show_home()
 
     def clear_content(self):
@@ -256,6 +272,22 @@ class App(ctk.CTk):
         self.theme_menu.pack(pady=10)
 
         self.theme_menu.set(self.current_theme)
+
+    def show_apps(self):
+        self.clear_content()
+
+        theme = THEMES[self.current_theme]
+
+        theme = THEMES[self.current_theme]
+
+        title = ctk.CTkLabel(
+            self.content,
+            text="📱برنامک ها",
+            font=(theme["font"]["family"], theme["font"]["size"]),
+            text_color=THEMES[self.current_theme]["color"]["text"]
+
+        )
+        title.pack(pady=30)
 
     def change_theme(self, name):
         self.current_theme = name
